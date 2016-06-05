@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--获取图片的base64码-->
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .img {
+            background-color: #CCCCCC;
+            width: 160px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+<label>上传照片</label>
+<input id="input" type="file" accept='image/*'/>
+<img class='img' id='output'>
+<script>
+    var base641;//没去掉头
+    var base64_1;//去掉头
+    document.getElementById('input').onchange = function (event) {
+        var input = event.target;
+        var reader = new FileReader();
+        reader.onload = function () {
+            var output = document.getElementById('output').src = reader.result;
+            base641 = this.result; //获得图片的base64码
+            base64_1 = base641.substr(base641.lastIndexOf('base64,') + 7); //去掉头
+            alert(base64_1);
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+</script>
+</body>
+</html>
